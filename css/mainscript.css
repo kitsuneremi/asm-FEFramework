@@ -1,0 +1,44 @@
+*{box-sizing: border-box;margin: 0;padding: 0}
+
+.mainx{
+    width: 94%;
+    height: fit-content;
+    margin: 3% 3% 0 3%;
+}
+
+.navbar-box{
+    justify-content: space-between;
+}
+
+.navbar-first{
+    display: flex;
+
+}
+
+.footerx{
+    background: #024137;
+}
+
+.footer-first-row{
+    justify-content: space-between;
+}
+
+.the-real-footer{
+    width: 94%;
+    height: fit-content;
+    margin: 3% 3% 0 3%;
+}
+
+.footer-button{
+    width: 2em;
+    height: 2em;
+    border-radius: 2em;
+    background: transparent;
+    color: white;
+}
+
+.footer-button-text{
+    display: flex;
+    text-decoration: none;
+    color: white;
+}
