@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/mainscript.css">
+    <link rel="stylesheet" href="../css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
+    <script src="../css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js" ></script>
+    <script src="../js/angular-1.8.2/angular-route.min.js"></script>
+    <script src="../js/popper.js"></script>
+</head>
+<body>
+
+    <div ng-app="myApp">
+        <div class="mainx" ng-controller="DetailProductController">
+        <!--header-->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid row" style="justify-content: space-between">
+                <h1 class="col-2" href="#">Innisfree</h1>
+                <form class="d-flex col-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+
+                <div class="col-4"></div>
+                <div class="collapse navbar-collapse col-3 navbar-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 row">
+                        <li class="nav-item col-4">
+                            <a class="nav-link active" aria-current="page" href="#">đăng nhập</a>
+                        </li>
+                        <li class="nav-item col-4">
+                            <a class="nav-link" href="#">trang của tôi</a>
+                        </li>
+                        <li class="nav-item col-4">
+                            <a class="nav-link" href="#">giỏ hàng</a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="navbar-toggler col-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+
+        <!--content-->
+        <div class="row mt-3 mb-5">
+            <div class="col-2"><h4>Trang chủ</h4></div>
+            <div class="col-2"><h4>Sản phẩm</h4></div>
+            <div class="col-2"><h4>Giới thiệu cửa hàng</h4></div>
+            <div class="col-2"><h4>sự kiện</h4></div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <img ng-src={{src[index-1].src}} class="d-block w-100" alt="...">
+                    <ul class="pagination">
+                        <li class="page-item" style="width: fit-content" ng-repeat="a in src">
+                            <img ng-src={{a.src}} alt="..." ng-click="handleChangeImg($event,a.index)" style="width: 30%;margin: 0">
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6">
+
+            </div>
+        </div>
+        <div class="row mt-5" style="display: flex;justify-content: space-between">
+
+        </div>
+
+
+        <!--footer-->
+
+        <div class="footerx">
+            <div class="the-real-footer">
+                <div class="row footer-first-row">
+                    <div class="col-8" style="text-align: start">
+                        <div class="row">
+                            <h1 style="color: white">innisfree</h1>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-1">
+                                <button class="footer-button">a</button>
+                            </div>
+                            <div class="col-1">
+                                <button class="footer-button">a</button>
+                            </div>
+                            <div class="col-1">
+                                <button class="footer-button">a</button>
+                            </div>
+                            <div class="col-1">
+                                <button class="footer-button">a</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4" style="text-align: end;padding: 4% 0">
+                        <div class="row">
+                            <div class="col-2"><button class="footer-button">a</button></div>
+                            <div class="col-10">
+                                <div class="row footer-button-text">2020 innisfree Inc.</div>
+                                <div class="row footer-button-text">All rights reserved.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách giao hàng và thanh toán</a></div>
+                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách bảo mật thông tin khách hàng</a></div>
+                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách mua hàng</a></div>
+                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách trả hàng</a></div>
+                    </div>
+                    <div class="row">
+                        <p class="footer-button-text">thời gian làm việc: Thứ 2 đến thứ 7 hàng tuần</p>
+                        <p class="footer-button-text">Tự vấn và chăm sóc khách hàng: 129310923890182390 (Ext 125)</p>
+                        <p class="footer-button-text">Email: cs_vn@tinhte.innisfree.com</p>
+                    </div>
+                </div>
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+<script src="../js/angular-1.8.2/angular.min.js"></script>
+<script>
+    const app = angular.module("myApp",[])
+    app.controller("DetailProductController",($scope) => {
+        $scope.index = 1
+        $scope.src = [
+            {index: 1,src: "../img/kiana.png"},
+            {index: 2,src: "../img/DetailProduct1.png"},
+            {index: 3,src: "../img/ys.jpg"},
+        ]
+        $scope.handleChangeImg = (e, index) => {
+            e.preventDefault();
+            $scope.index = index
+            console.log(index)
+        }
+
+    })
+</script>
+</html>

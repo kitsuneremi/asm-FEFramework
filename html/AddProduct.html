@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/mainscript.css">
+    <link rel="stylesheet" href="../css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
+    <script src="../js/angular-1.8.2/angular-route.min.js"></script>
+    <script src="../js/popper.js"></script>
+    <script src="../node_modules/@popperjs/core/dist/cjs/popper.js"></script>
+</head>
+<body>
+    <div ng-app="route">
+    <div ng-app="myApp">
+        <div class="mainx">
+        <!--header-->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid row" style="justify-content: space-between">
+                <h1 class="col-2" href="#">Innisfree</h1>
+                <form class="d-flex col-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+
+                <div class="col-4"></div>
+                <div class="collapse navbar-collapse col-3 navbar-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 row">
+                        <li class="nav-item col-4">
+                            <a class="nav-link active" aria-current="page" href="#">đăng nhập</a>
+                        </li>
+                        <li class="nav-item col-4">
+                            <a class="nav-link" href="#">trang của tôi</a>
+                        </li>
+                        <li class="nav-item col-4">
+                            <a class="nav-link" href="#">giỏ hàng</a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="navbar-toggler col-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+
+        <!--content-->
+        <div class="row">
+            <p class="text-center">Add product</p>
+        </div>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form>
+                    <div class="row my-4">
+                        <div class="col-3">Product Name</div>
+                        <div class="col-8">
+                            <input class="form-control" style="height: 50px;" placeholder="001930293" />
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-3">Product Name</div>
+                        <div class="col-8">
+                            <input class="form-control" style="height: 50px;" placeholder="001930293" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+<script src="../js/angular-1.8.2/angular.min.js"></script>
+<script>
+    const rt = angular.module("route",["ngRoute"])
+    const app = angular.module("myApp",[])
+
+    rt.config(($routeProvider) => {
+        $routeProvider
+            .when("/", {
+                templateUrl : "index.html"
+            })
+            .when("/detailproduct", {
+                templateUrl : "DetailProduct.html"
+            })
+            .when("/event", {
+                templateUrl : "Event.html"
+            })
+            .when("/product", {
+                templateUrl : "Product.html"
+            })
+            .when("/sign",{
+                templateUrl: "SignInUp.html"
+            })
+        ;
+    })
+</script>
+</html>
