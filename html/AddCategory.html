@@ -15,7 +15,7 @@
 <body>
     <div>
         <div ng-app="myApp">
-            <div ng-controller="productController" class="mainx">
+            <div ng-controller="categoryController" class="mainx">
             <!--header-->
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid row" style="justify-content: space-between">
@@ -64,39 +64,14 @@
                 <div class="col-8 offset-1">
                     <form>
                         <div class="row my-4">
-                            <div class="col-3">Product Name</div>
+                            <div class="col-3">Category Name</div>
                             <div class="col-8">
-                                <input class="form-control" style="height: 50px;" placeholder="" ng-model="product.name"/>
-                            </div>
-                        </div>
-                        <div class="row my-4">
-                            <div class="col-3">Price</div>
-                            <div class="col-8">
-                                <input class="form-control" style="height: 50px;" placeholder="" ng-model="product.price"/>
-                            </div>
-                        </div>
-                        <div class="row my-4">
-                            <div class="col-3">Category name</div>
-                            <div class="col-8">
-                                <select class="form-select" ng-model="product.category" required>
-                                    <option
-                                        ng-repeat="cate in listCategory"
-                                        value="{{ cate.id }}">
-                                        {{ cate.name }}
-                                    </option>
-                                </select>
-                
-                            </div>
-                        </div>
-                        <div class="row my-4">
-                            <div class="col-3">Price</div>
-                            <div class="col-8">
-                                <input type="file" />
+                                <input class="form-control" style="height: 50px;" placeholder="" ng-model="category.name"/>
                             </div>
                         </div>
                         <div class="row my-4">
                             <div class="col-2 offset-10">
-                                <button class="p-2" style="background: transparent;color: rgb(34, 59, 8);" ng-click="submit($event)">add product</button>
+                                <button class="p-2" style="background: transparent;color: rgb(34, 59, 8);" ng-click="submit($event)">add category</button>
                             </div>
                         </div>
                     </form>
@@ -105,34 +80,20 @@
                             <tr>
                                 <th>id</th>
                                 <th>Name</th>
-                                <th>price</th>
-                                <th>category</th>
-                                <th>img</th>
-                                <th colspan="2">Action</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="product in listProducts">
-                                <td>{{ product.id }}</td>
-                                <td>{{ product.name }}</td>
-                                <td>{{ product.price }}</td>
-                                <td>{{ product.category }}</td>
-                                <td>{{ product.img }}</td>
+                            <tr ng-repeat="category in listCategories">
+                                <td>{{ category.id }}</td>
+                                <td>{{ category.name }}</td>
                                 <td>
                                     <button
                                         class="btn btn-primary"
                                         href="#"
-                                        ng-click="handleUpdate($event, product.id)"
+                                        ng-click="handleUpdate($event, category.id)"
                                         >
                                         Update
-                                    </button>
-                                </td>
-                                <td>
-                                    <button
-                                        class="btn btn-danger"
-                                        ng-click="handleDelete($event, product.id)"
-                                        href="#">
-                                        Delete
                                     </button>
                                 </td>
                             </tr>
@@ -172,84 +133,70 @@
         ;
     })
 
-    app.controller("productController",($scope, $http) => {
-        const productApi = 'http://localhost:3000/products'
+    app.controller("categoryController",($scope, $http) => {
+        const categoryApi = 'http://localhost:3000/categories'
 
         $scope.updateIndex = -1;
+        $http.get(categoryApi)
+            .then((res) => {
+                $scope.listCategories = res.data; 
+            })
+
+        $scope.category = {
+            id : 0,
+            name : ''
+        }
+
         $scope.submit = (e) => {
             e.preventDefault();
-            // $scope.insert()
-            $scope.update()
+            $scope.insert()
+            // $scope.update()
         }
 
         $scope.insert = () => {
-            $http.post(productApi,$scope.product,JSON.stringify($scope.product))
+            $http.post(categoryApi,$scope.category,JSON.stringify($scope.category))
                 .then(res => {
                     console.dir(res);
                 })
-            $http.get(productApi)
+            $http.get(categoryApi)
                 .then((res) => {
-                    $scope.listProducts = res.data; 
+                    $scope.listCategories = res.data; 
                 })
-            $scope.product = {
+            $scope.category = {
                 id : 0,
-                name : '',
-                price : 0,
-                category : 0,
-                img : ''
-            }
+                name : ''
         }
 
         $scope.update = () => {
-            $http.patch(productApi.concat(`/${$scope.updateIndex}`),$scope.product,JSON.stringify($scope.product))
+            $http.patch(categoryApi.concat(`/${$scope.updateIndex}`),$scope.category,JSON.stringify($scope.category))
                 .then(res => {
                     console.dir(res);
                 })
-            $http.get(productApi)
+            $http.get(categoryApi)
                 .then((res) => {
-                    $scope.listProducts = res.data; 
+                    $scope.listCategories = res.data; 
                 })
             $scope.updateIndex = -1;
         }
 
-        $scope.product = {
+        $scope.category= {
             id : 0,
             name : '',
-            price : 0,
-            category : 0,
-            img : ''
         }
 
-        $http.get(productApi)
-            .then((res) => {
-                $scope.listProducts = res.data; 
-            })
-        
-        $http.get('http://localhost:3000/categories')
-            .then((res) => {
-                $scope.listCategory = res.data;
-            })
-
         $scope.handleUpdate = (e, id) => {
+            console.log(id);
+            e.preventDefault();
             $scope.updateIndex = id;
-            $scope.listProducts.map((pro) => {
-                if(pro.id === id){
-                    // $scope.updateProduct = pro;
-                    $scope.product = pro;
+            $scope.listCategories.map(cat => {
+                if(cat.id === id){
+                    $scope.category = cat;
                     return ;
                 }
             })
         }
-
-        $scope.handleDelete = (e,id) => {
-            e.preventDefault()
-            $http.delete(productApi.concat(`/${id}`))
-            $http.get(productApi)
-                .then((res) => {
-                    $scope.listProducts = res.data;
-                })
-        }
-    })
+    }
+})
 
 </script>
 </html>

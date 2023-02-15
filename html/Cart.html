@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/mainscript.css">
+    <link rel="stylesheet" href="../css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
+    <script src="../css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js" ></script>
+    <script src="../js/angular-1.8.2/angular-route.min.js"></script>
+    <script src="../js/popper.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<body>
+    <div>
+        <div ng-app="myApp">
+            <div class="mainx" ng-controller="CartController">
+                <!--header-->
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid row" style="justify-content: space-between">
+                        <h1 class="col-2" href="#">Innisfree</h1>
+                        <form class="d-flex col-3" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+
+                        <div class="col-4"></div>
+                        <div class="collapse navbar-collapse col-3 navbar-end" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 row">
+                                <li class="nav-item col-4">
+                                    <a class="nav-link active" aria-current="page" href="#">đăng nhập</a>
+                                </li>
+                                <li class="nav-item col-4">
+                                    <a class="nav-link" href="#">trang của tôi</a>
+                                </li>
+                                <li class="nav-item col-4">
+                                    <a class="nav-link" href="#">giỏ hàng</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="navbar-toggler col-1" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </nav>
+
+                <!--content-->
+
+
+                <div class="row mt-3">
+                    <div class="col-2"><a href="#/!">
+                            Trang chủ
+                        </a></div>
+                    <div class="col-2"><a href="#!product">Sản phẩm</a></div>
+                    <div class="col-2">
+                        <h4>Giới thiệu cửa hàng</h4>
+                    </div>
+                    <div class="col-2">
+                        <h4>sự kiện</h4>
+                    </div>
+                </div>
+
+
+                <div class="row mt-5">
+                    <h3 style="text-align: center">Sản phẩm bán chạy</h3>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row">
+                                <div class="col-2">
+
+                                </div>
+                                <div class="col-10">
+                                    <div class="row"></div>
+                                    <div class="row"></div>
+                                    <div class="row"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="m-0">Sale sốc</p>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <select class="form-select" ng-model="category.name" required>
+                                <option
+                                    ng-repeat="cat in categories"
+                                    value="{{ cat.id }}">
+                                    {{ cat.name }}
+                                </option>
+                            </select>
+                            <p class="m-0">
+                                {{categories[category.name - 1].name}}
+                            </p>
+                        </div>
+                        <div class="col-2">
+                            <p>{{listProducts[0].price}}</p>
+                        </div>
+                        <div class="col-2">
+                            <input type="number" style="max-width: 100%;"/>
+                        </div>
+                        <div class="col-2">
+                            <p>tạm thời fix cứng</p>
+                        </div>
+                        <div class="col-1">
+                            <p>xóa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--footer-->
+
+            <div class="footerx">
+                <div class="the-real-footer">
+                    <div class="row footer-first-row">
+                        <div class="col-8" style="text-align: start">
+                            <div class="row">
+                                <h1 style="color: white">innisfree</h1>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-1">
+                                    <button class="footer-button">a</button>
+                                </div>
+                                <div class="col-1">
+                                    <button class="footer-button">a</button>
+                                </div>
+                                <div class="col-1">
+                                    <button class="footer-button">a</button>
+                                </div>
+                                <div class="col-1">
+                                    <button class="footer-button">a</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4" style="text-align: end;padding: 4% 0">
+                            <div class="row">
+                                <div class="col-2"><button class="footer-button">a</button></div>
+                                <div class="col-10">
+                                    <div class="row footer-button-text">2020 innisfree Inc.</div>
+                                    <div class="row footer-button-text">All rights reserved.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách giao
+                                    hàng và thanh toán</a></div>
+                            <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách bảo
+                                    mật thông tin khách hàng</a></div>
+                            <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách mua
+                                    hàng</a></div>
+                            <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách trả
+                                    hàng</a></div>
+                        </div>
+                        <div class="row">
+                            <p class="footer-button-text">thời gian làm việc: Thứ 2 đến thứ 7 hàng tuần</p>
+                            <p class="footer-button-text">Tự vấn và chăm sóc khách hàng: 129310923890182390 (Ext 125)
+                            </p>
+                            <p class="footer-button-text">Email: cs_vn@tinhte.innisfree.com</p>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="../js/angular-1.8.2/angular.min.js"></script>
+<script>
+    const rt = angular.module("route", ["ngRoute"])
+    const app = angular.module("myApp", [])
+
+    const productApi = 'http://localhost:3000/products'
+    const cartApi = 'http://localhost:3000/carts'
+    const categoryApi = 'http://localhost:3000/categories'
+
+    rt.config(($routeProvider) => {
+        $routeProvider
+            .when("/", {
+                templateUrl: "index.html"
+            })
+            .when("/detailproduct", {
+                templateUrl: "DetailProduct.html"
+            })
+            .when("/event", {
+                templateUrl: "Event.html"
+            })
+            .when("/product", {
+                templateUrl: "Product.html"
+            })
+            .when("/sign", {
+                templateUrl: "SignInUp.html"
+            })
+            ;
+    })
+
+    app.controller("CartController", ($scope,$http) => {
+
+        $scope.item = {
+            "id": 0,
+            "idpro": 1,
+            "quantity" : 1
+        }
+        $http.get(cartApi)
+            .then(res => {$scope.carts = res.data})
+
+        $scope.category = {
+            "id" : 0,
+            "name" : ""
+        }
+
+        $scope.categories = []
+        $http.get(categoryApi)
+            .then(res => {
+                $scope.categories = res.data
+                $scope.categories.map(cat => {console.log(cat);})
+            })
+        $scope.product = {
+            id : 0,
+            name : '',
+            price : 0,
+            category : 0,
+            img : ''
+        }
+
+        $http.get(productApi)
+            .then((res) => {
+                $scope.listProducts = res.data; 
+            })
+    }); 
+</script>
+
+</html>
