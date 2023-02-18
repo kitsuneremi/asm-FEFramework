@@ -1,0 +1,52 @@
+<div class="row mt-5">
+  <div class="row">
+
+  </div>
+  <div class="row" ng-repeat="item in carts">
+    <div class="col-3">
+      <div class="row">
+        <div class="col-1 p-0">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          </div>
+        </div>
+        <div class="col-2" style="width: fit-content;">
+          <img src="https://yt3.ggpht.com/ytc/AMLnZu9QEgO_HIc9TG3KB0JkiLFblFuYKsINWjXgGI-eWQ=s68-c-k-c0x00ffffff-no-rj"
+            alt="" style="width: 60px;height: 80px;">
+        </div>
+        <div class="col-9" style="width: fit-content;">
+          <div class="row" style="width: fit-content;">
+            {{listProducts[item.idpro].name}}
+          </div>
+          <div class="row" style="width: fit-content;">asdasd</div>
+          <div class="row" style="width: fit-content;">werwer</div>
+        </div>
+      </div>
+      <div class="row">
+        <p class="m-0">Sale sốc</p>
+      </div>
+    </div>
+    <div class="col-2">
+      <select class="form-select" ng-model="category.name" required>
+        <option ng-repeat="cat in categories" value="{{ cat.id }}">
+          {{ cat.name }}
+        </option>
+      </select>
+      <p class="m-0">
+        {{categories[category.name - 1].name}}
+      </p>
+    </div>
+    <div class="col-2">
+      <p>{{listProducts[item.idpro].price}}</p>
+    </div>
+    <div class="col-2">
+      <input type="number" style="max-width: 100%;" ng-model="item.quantity" />
+    </div>
+    <div class="col-2">
+      <p>{{(listProducts[item.idpro].price) * (item.quantity)}}</p>
+    </div>
+    <div class="col-1">
+      <button ng-click="handleDelete($event,item.id)">xóa</button>
+    </div>
+  </div>
+</div>

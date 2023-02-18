@@ -1,0 +1,89 @@
+<div class="row">
+  <p class="text-center">Add product</p>
+</div>
+<div class="row">
+  <div class="col-2" style="background-color: cadetblue;">
+    <div class="row mt-5">
+      <h3>admin</h3>
+    </div>
+    <div class="row mt-5">
+      <h3>product</h3>
+    </div>
+    <div class="row mt-5">
+      <h3>category</h3>
+    </div>
+  </div>
+  <div class="col-8 offset-1">
+    <form>
+      <div class="row my-4">
+        <div class="col-3">Product Name</div>
+        <div class="col-8">
+          <input class="form-control" style="height: 50px;" placeholder=""
+                 ng-model="product.name" />
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-3">Price</div>
+        <div class="col-8">
+          <input class="form-control" style="height: 50px;" placeholder=""
+                 ng-model="product.price" />
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-3">Category name</div>
+        <div class="col-8">
+          <select class="form-select" ng-model="product.category" required>
+            <option ng-repeat="cate in listCategory" value="{{ cate.id }}">
+              {{ cate.name }}
+            </option>
+          </select>
+
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-3">Image</div>
+        <div class="col-8">
+          <input type="file" file-model="file" ng-change="handleFile()" />
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-2 offset-10">
+          <button class="p-2" style="background: transparent;color: rgb(34, 59, 8);"
+                  ng-click="submit($event)">add product</button>
+        </div>
+      </div>
+    </form>
+    <table class="table mt-4">
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>price</th>
+        <th>category</th>
+        <th>img</th>
+        <th colspan="2">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="product in listProducts">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.img }}</td>
+        <td>
+          <button class="btn btn-primary" href="#"
+                  ng-click="handleUpdate($event, product.id)">
+            Update
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" ng-click="handleDelete($event, product.id)" href="#">
+            Delete
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
