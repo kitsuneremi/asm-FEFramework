@@ -8,14 +8,15 @@
   <title>Document</title>
   <link rel="stylesheet" href="../css/mainscript.css">
   <link rel="stylesheet" href="../css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
-  <script src="../css//bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js"></script>
+<!--  <script src="../css//bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js"></script>-->
+  <script src="../js/angular-1.8.2/angular.min.js"></script>
   <script src="../js/angular-1.8.2/angular-route.min.js"></script>
   <script src="../js/popper.js"></script>
-  <script src="../js/angular-1.8.2/angular-route.min.js"></script>
+
 </head>
 <body>
   <div ng-app="myApp">
-      <div>
+      <div ng-controller="SignInController">
         <div class="row">
           <div class="col-10 offset-1">
             <h1 class="my-4">đăng nhập hoặc đăng ký thành viên</h1>
@@ -30,10 +31,10 @@
                   <h2>đăng nhập thành viên</h2>
                 </div>
                 <div class="row my-5">
-                  <input class="form-control border-0" placeholder="tài khoản">
+                  <input class="form-control border-0" placeholder="tài khoản" ng-model="account">
                 </div>
                 <div class="row my-5">
-                  <input type="password" placeholder="mật khẩu" class="form-control border-0">
+                  <input type="password" placeholder="mật khẩu" class="form-control border-0" ng-model="password">
                 </div>
                 <div class="row my-5">
                   <p data-bs-toggle="modal" data-bs-target="#exampleModal">bạn quên mật khẩu?</p>                  
@@ -83,7 +84,7 @@
 
                 </div>
                 <div class="row my-5">
-                  <button ng-click="" style="background: transparent;height: 50px">đăng nhập</button>
+                  <button style="background: transparent;height: 50px" ng-click="handleSignIn($event)">đăng nhập</button>
                 </div>
                 <div class="row my-5">
                   <h4>đăng nhập nhanh/đăng ký thành viên bằng tài khoản mạng xã hội</h4>
@@ -106,14 +107,14 @@
           <div class="col-lg-6 col-sm-12">
             <div class="col-6 offset-3">
               <div class="row my-5">
-                <h2>dăng ký thành viên mới</h2>
+                <h2>đăng ký thành viên mới</h2>
               </div>
               <div class="row my-5">
                 <p>đăng ký ngay để mua sắm dễ dàng hơn và nhận những ưu đãi đọc quyền dành cho thành viên của innisfree</p>
               </div>
               <div class="row ps-3 mt-5">
                 <button style="width: 70%;height:50px;background: transparent">
-                  đăng ký ->
+                  đăng ký
                 </button>
               </div>
             </div>
@@ -121,23 +122,59 @@
         </div>
       </div>
   </div>
-</body>
-<script src="../js/angular-1.8.2/angular.min.js"></script>
-<script>
-  const app = angular.module("myApp",[])
-  app.controller("DetailProductController",($scope) => {
-    $scope.index = 1
-    $scope.src = [
-      {index: 1,src: "../img/kiana.png"},
-      {index: 2,src: "../img/DetailProduct1.png"},
-      {index: 3,src: "../img/ys.jpg"},
-    ]
-    $scope.handleChangeImg = (e, index) => {
-      e.preventDefault();
-      $scope.index = index
-      console.log(index)
-    }
+  <script>
+    const app = angular.module("myApp",["ngRoute"])
+    app.config(($routeProvider) => {
+      $routeProvider
+              .when("/", {
+                templateUrl: "index.html"
+              })
+              .when("/detailproduct", {
+                templateUrl: "DetailProduct.html"
+              })
+              .when("/event", {
+                templateUrl: "Event.html"
+              })
+              .when("/product", {
+                templateUrl: "Product.html"
+              })
+              .when("/sign", {
+                templateUrl: "SignInUp.html"
+              })
+      ;
+    })
 
-  })
-</script>
+    app.controller("SignInController",($scope, $http) => {
+      const accountApi = 'http://localhost:3000/accounts'
+
+      $http.get(accountApi)
+              .then(res => {
+                $scope.listAccounts = res.data;
+              })
+
+      $scope.account = "";
+      $scope.password = "";
+
+
+
+
+
+      $scope.handleSignIn = e => {
+        let count = 0;
+        $scope.currentValue = {
+          "username": $scope.account,
+          "password": $scope.password
+        }
+        $scope.listAccounts.map(acc => {
+          if(acc.username == $scope.currentValue.username && acc.password == $scope.currentValue.password){
+            count++;
+          }
+        })
+        count > 0 ? alert('ok') : alert('ko ok')
+      }
+
+    })
+  </script>
+</body>
+
 </html>

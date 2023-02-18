@@ -9,10 +9,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/mainscript.css">
     <link rel="stylesheet" href="../css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
-    <script src="../css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js" ></script>
-    <script src="../js/angular-1.8.2/angular-route.min.js"></script>
+    <script src="../js/angular-1.8.2/angular.min.js"></script>
     <script src="../js/popper.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/angular-1.8.2/angular-route.min.js"></script>
 <body>
     <div>
         <div ng-app="myApp">
@@ -73,21 +72,23 @@
                     <div class="row">
 
                     </div>
-                    <div class="row">
-                        <div class="col-1">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            </div>
-                        </div>
-                        <div class="col-2">
+                    <div class="row" ng-repeat = "item in carts">
+                        <div class="col-3">
                             <div class="row">
-                                <div class="col-2">
-
+                                <div class="col-1 p-0">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </div>
                                 </div>
-                                <div class="col-10">
-                                    <div class="row"></div>
-                                    <div class="row"></div>
-                                    <div class="row"></div>
+                                <div class="col-2" style="width: fit-content;">
+                                    <img src="https://yt3.ggpht.com/ytc/AMLnZu9QEgO_HIc9TG3KB0JkiLFblFuYKsINWjXgGI-eWQ=s68-c-k-c0x00ffffff-no-rj" alt="" style="width: 60px;height: 80px;">
+                                </div>
+                                <div class="col-9" style="width: fit-content;">
+                                    <div class="row" style="width: fit-content;">
+                                        {{listProducts[item.idpro].name}}
+                                    </div>
+                                    <div class="row" style="width: fit-content;">asdasd</div>
+                                    <div class="row" style="width: fit-content;">werwer</div>
                                 </div>
                             </div>
                             <div class="row">
@@ -107,16 +108,16 @@
                             </p>
                         </div>
                         <div class="col-2">
-                            <p>{{listProducts[0].price}}</p>
+                            <p>{{listProducts[item.idpro].price}}</p>
                         </div>
                         <div class="col-2">
-                            <input type="number" style="max-width: 100%;"/>
+                            <input type="number" style="max-width: 100%;" ng-model="item.quantity"/>
                         </div>
                         <div class="col-2">
-                            <p>tạm thời fix cứng</p>
+                            <p>{{(listProducts[item.idpro].price) * (item.quantity)}}</p>
                         </div>
                         <div class="col-1">
-                            <p>xóa</p>
+                            <button ng-click="handleDelete($event,item.id)">xóa</button>
                         </div>
                     </div>
                 </div>
@@ -183,7 +184,6 @@
     </div>
 
 </body>
-<script src="../js/angular-1.8.2/angular.min.js"></script>
 <script>
     const rt = angular.module("route", ["ngRoute"])
     const app = angular.module("myApp", [])
@@ -193,25 +193,32 @@
     const categoryApi = 'http://localhost:3000/categories'
 
     rt.config(($routeProvider) => {
+        $LocationProvider.hashPrefix("")
         $routeProvider
             .when("/", {
-                templateUrl: "index.html"
+                templateUrl : "index.html"
             })
             .when("/detailproduct", {
-                templateUrl: "DetailProduct.html"
+                templateUrl : "DetailProduct.html"
             })
             .when("/event", {
-                templateUrl: "Event.html"
+                templateUrl : "Event.html"
             })
             .when("/product", {
-                templateUrl: "Product.html"
+                templateUrl : "Product.html"
             })
-            .when("/sign", {
+            .when("/sign",{
                 templateUrl: "SignInUp.html"
             })
-            ;
+            .when("/storeinfo",{
+                templateUrl: "StoreInfo.html"
+            })
+            .when("/Cart",{
+                templateUrl: "Cart.html"
+            })
+            
+        ;
     })
-
     app.controller("CartController", ($scope,$http) => {
 
         $scope.item = {
@@ -219,8 +226,11 @@
             "idpro": 1,
             "quantity" : 1
         }
+
+        $scope.carts = []
         $http.get(cartApi)
-            .then(res => {$scope.carts = res.data})
+            .then(res => {$scope.carts = res.data;
+                $scope.carts.map(item => {console.log(item);})})
 
         $scope.category = {
             "id" : 0,
@@ -243,8 +253,18 @@
 
         $http.get(productApi)
             .then((res) => {
-                $scope.listProducts = res.data; 
+                $scope.listProducts = res.data;
             })
+        $scope.handleDelete = (e, id) => {
+            e.preventDefault();
+            $http.delete(`${cartApi}/${id}`)
+            $http.get(categoryApi)
+            .then(res => {
+                $scope.categories = res.data
+                $scope.categories.map(cat => {console.log(cat);})
+            })
+        }
+
     }); 
 </script>
 

@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="../css/mainscript.css">
     <link rel="stylesheet" href="../css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
     <script src="../css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js" ></script>
+    <script src="../js/angular-1.8.2/angular.min.js"></script>
     <script src="../js/angular-1.8.2/angular-route.min.js"></script>
     <script src="../js/popper.js"></script>
 </head>
-<body>
-
-    <div ng-app="myApp">
+<body ng-app="myApp">
+    <div>
         <div class="mainx" ng-controller="DetailProductController">
         <!--header-->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -53,19 +53,28 @@
             <div class="col-2"><h4>sự kiện</h4></div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col">
                 <div class="row">
-                    <img ng-src={{src[index-1].src}} class="d-block w-100" alt="...">
+                    <img ng-src={{listProducts[index-1].img}} class="d-block w-100" alt="...">
                     <ul class="pagination">
-                        <li class="page-item" style="width: fit-content" ng-repeat="a in src">
-                            <img ng-src={{a.src}} alt="..." ng-click="handleChangeImg($event,a.index)" style="width: 30%;margin: 0">
+                        <li class="page-item" style="width: fit-content" ng-repeat="product in listProducts">
+                            <img ng-src={{product.img}} alt="..." ng-click="handleChangeImg($event,product.id)" style="width: 30%;margin: 0">
 
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-6">
-
+            <div class="col ms-5">
+                <div class="row"><h1>{{listProducts[index-1].name}}</h1></div>
+                <div class="row">
+                    <p>chỗ này lười chưa cho thêm description vào api để lấy ra</p>
+                </div>
+                <div class="row" style="justify-content: center;">
+                    <input type="number" ng-model="quantity" style="width: 5em;">
+                </div>
+                <div class="row" style="justify-content: center;">
+                    <div class="col-4"><button ng-click="handleAdd($event)">thêm vào giỏ hàng</button></div>
+                </div>
             </div>
         </div>
         <div class="row mt-5" style="display: flex;justify-content: space-between">
@@ -129,22 +138,62 @@
     </div>
 
 </body>
-<script src="../js/angular-1.8.2/angular.min.js"></script>
+
 <script>
+    const rt = angular.module("route", ["ngRoute"])
     const app = angular.module("myApp",[])
-    app.controller("DetailProductController",($scope) => {
+    rt.config(($routeProvider) => {
+        $LocationProvider.hashPrefix("")
+        $routeProvider
+            .when("/", {
+                templateUrl : "index.html"
+            })
+            .when("/detailproduct", {
+                templateUrl : "DetailProduct.html"
+            })
+            .when("/event", {
+                templateUrl : "Event.html"
+            })
+            .when("/product", {
+                templateUrl : "Product.html"
+            })
+            .when("/sign",{
+                templateUrl: "SignInUp.html"
+            })
+            .when("/storeinfo",{
+                templateUrl: "StoreInfo.html"
+            })
+            .when("/Cart",{
+                templateUrl: "Cart.html"
+            })
+            
+        ;
+    })
+    app.controller("DetailProductController",($scope, $http) => {
+        const productApi = "http://localhost:3000/products"
+        const cartsApi = "http://localhost:3000/carts"
         $scope.index = 1
         $scope.src = [
             {index: 1,src: "../img/kiana.png"},
             {index: 2,src: "../img/DetailProduct1.png"},
             {index: 3,src: "../img/ys.jpg"},
         ]
+        $scope.quantity = 1;
+        $http.get(productApi)
+            .then( res => $scope.listProducts = res.data)
+        
+        
         $scope.handleChangeImg = (e, index) => {
             e.preventDefault();
             $scope.index = index
-            console.log(index)
+            console.log($scope.index)
         }
-
+        $scope.handleAdd = (e) => {
+            $http.post(cartsApi,{
+                "idpro": $scope.index,
+                "quantity" : $scope.quantity
+            })
+        }
     })
 </script>
 </html>

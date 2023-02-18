@@ -1,158 +1,156 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../css/mainscript.css">
     <link rel="stylesheet" href="../css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
-    <script src="../js/angular-1.8.2/angular-route.min.js"></script>
+    <script src="../js/angular-1.8.2/angular.min.js"></script>
     <script src="../js/popper.js"></script>
-    <script src="../node_modules/@popperjs/core/dist/cjs/popper.js"></script>
+    <script src="../js/angular-1.8.2/angular-route.min.js"></script>
 </head>
-<body>
-    <div ng-app="route">
+
+<body ng-app="route" >
     <div ng-app="myApp">
-        <div class="mainx">
-        <!--header-->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid row" style="justify-content: space-between">
-                <h1 class="col-2" href="#">Innisfree</h1>
-                <form class="d-flex col-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+        <div ng-view class="mainx">
+            <!--header-->
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid row" style="justify-content: space-between">
+                    <h1 class="col-2" href="#">Innisfree</h1>
+                    <form class="d-flex col-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
 
-                <div class="col-4"></div>
-                <div class="collapse navbar-collapse col-3 navbar-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 row">
-                        <li class="nav-item col-4">
-                            <a class="nav-link active" aria-current="page" href="#">đăng nhập</a>
-                        </li>
-                        <li class="nav-item col-4">
-                            <a class="nav-link" href="#">trang của tôi</a>
-                        </li>
-                        <li class="nav-item col-4">
-                            <a class="nav-link" href="#">giỏ hàng</a>
-                        </li>
-                    </ul>
+                    <div class="col-4"></div>
+                    <div class="collapse navbar-collapse col-3 navbar-end" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 row">
+                            <li class="nav-item col-4">
+                                <a class="nav-link active" aria-current="page" href="#">đăng nhập</a>
+                            </li>
+                            <li class="nav-item col-4">
+                                <a class="nav-link" href="#">trang của tôi</a>
+                            </li>
+                            <li class="nav-item col-4">
+                                <a class="nav-link" href="#">giỏ hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="navbar-toggler col-1" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
-                <button class="navbar-toggler col-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </nav>
+            </nav>
 
-        <!--content-->
+            <!--content-->
+            <div class="row mt-3">
+                <div class="col-2"><a href="#">
+                        Trang chủ
+                    </a></div>
+                <div class="col-2"><a href="#product">Sản phẩm</a></div>
+                <div class="col-2">
+                    <h4>Giới thiệu cửa hàng</h4>
+                </div>
+                <div class="col-2">
+                    <h4>sự kiện</h4>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <img class="img-fluid" src="https://gamerbraves.sgp1.cdn.digitaloceanspaces.com/2022/09/Honkai60_FI.jpg"
+                    style="height: 60%" />
+            </div>
 
 
-        <div class="row mt-3">
-            <div class="col-2"><a href="#/!">
-                Trang chủ
-            </a></div>
-            <div class="col-2"><a href="#!product">Sản phẩm</a></div>
-            <div class="col-2"><h4>Giới thiệu cửa hàng</h4></div>
-            <div class="col-2"><h4>sự kiện</h4></div>
-        </div>
-        <div class="row mt-5">
-            <img class="img-fluid" src="https://gamerbraves.sgp1.cdn.digitaloceanspaces.com/2022/09/Honkai60_FI.jpg" style="height: 60%"/>
-        </div>
+            <div class="row mt-5">
+                <h3 style="text-align: center">Sản phẩm bán chạy</h3>
+            </div>
+            <div class="row mt-5" style="display: flex;justify-content: space-between">
+                <div class="card py-1 px-5" style="width: 24rem;border: 0">
+                    <img src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card py-1 px-5" style="width: 24rem;border: 0">
+                    <img src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card py-1 px-5" style="width: 24rem;border: 0">
+                    <img src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card py-1 px-5" style="width: 24rem;border: 0">
+                    <img src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row mt-5">
+                <h3 style="text-align: center">Sản phẩm mới nhất</h3>
+            </div>
 
-        <div class="row mt-5">
-            <h3 style="text-align: center">Sản phẩm bán chạy</h3>
-        </div>
-        <div class="row mt-5" style="display: flex;justify-content: space-between">
-            <div class="card py-1 px-5" style="width: 24rem;border: 0">
-                <img
-                        src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                        class="card-img-top" alt="..."
-                />
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="row mt-5" style="display: flex;justify-content: space-between">
+                <div class="card py-1 px-5" style="width: 24rem;border: 0">
+                    <img src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card py-1 px-5" style="width: 24rem;border: 0">
+                    <img src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card py-1 px-5" style="width: 24rem;border: 0">
+                    <img src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card py-1 px-5" style="width: 24rem;border: 0">
+                    <img src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
                 </div>
             </div>
-            <div class="card py-1 px-5" style="width: 24rem;border: 0">
-                <img
-                        src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                        class="card-img-top" alt="..."
-                />
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-            <div class="card py-1 px-5" style="width: 24rem;border: 0">
-                <img
-                        src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                        class="card-img-top" alt="..."
-                />
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-            <div class="card py-1 px-5" style="width: 24rem;border: 0">
-                <img
-                        src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                        class="card-img-top" alt="..."
-                />
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-5">
-            <h3 style="text-align: center">Sản phẩm mới nhất</h3>
-        </div>
-
-        <div class="row mt-5" style="display: flex;justify-content: space-between">
-            <div class="card py-1 px-5" style="width: 24rem;border: 0">
-                <img
-                        src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                        class="card-img-top" alt="..."
-                />
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-            <div class="card py-1 px-5" style="width: 24rem;border: 0">
-                <img
-                        src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                        class="card-img-top" alt="..."
-                />
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-            <div class="card py-1 px-5" style="width: 24rem;border: 0">
-                <img
-                        src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                        class="card-img-top" alt="..."
-                />
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-            <div class="card py-1 px-5" style="width: 24rem;border: 0">
-                <img
-                        src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                        class="card-img-top" alt="..."
-                />
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
         </div>
 
         <!--footer-->
@@ -191,10 +189,14 @@
                 </div>
                 <div class="row">
                     <div class="row">
-                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách giao hàng và thanh toán</a></div>
-                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách bảo mật thông tin khách hàng</a></div>
-                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách mua hàng</a></div>
-                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách trả hàng</a></div>
+                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách giao hàng
+                                và thanh toán</a></div>
+                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách bảo mật
+                                thông tin khách hàng</a></div>
+                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách mua
+                                hàng</a></div>
+                        <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách trả
+                                hàng</a></div>
                     </div>
                     <div class="row">
                         <p class="footer-button-text">thời gian làm việc: Thứ 2 đến thứ 7 hàng tuần</p>
@@ -208,32 +210,39 @@
             </div>
         </div>
     </div>
-    </div>
-
 </body>
-<script src="../js/angular-1.8.2/angular.min.js"></script>
-<script>
-    const rt = angular.module("route",["ngRoute"])
-    const app = angular.module("myApp",[])
 
-    rt.config(($routeProvider) => {
+<script>
+    const rt = angular.module("route", ["ngRoute","file-model"])
+    const app = angular.module("myApp", [])
+
+    rt.config(($routeProvider, $locationProvider) => {
+        $locationProvider.hashPrefix('');
         $routeProvider
-            .when("/", {
-                templateUrl : "index.html"
+            .when("/index", {
+                templateUrl: "index.html"
             })
             .when("/detailproduct", {
-                templateUrl : "DetailProduct.html"
+                templateUrl: "DetailProduct.html"
             })
             .when("/event", {
-                templateUrl : "Event.html"
+                templateUrl: "Event.html"
             })
             .when("/product", {
-                templateUrl : "Product.html"
+                templateUrl: "./Product.html"
             })
-            .when("/sign",{
+            .when("/sign", {
                 templateUrl: "SignInUp.html"
             })
-        ;
+            .when("/storeinfo", {
+                templateUrl: "StoreInfo.html"
+            })
+            .when("/Cart", {
+                templateUrl: "Cart.html"
+            })
+
+            ;
     })
 </script>
+
 </html>

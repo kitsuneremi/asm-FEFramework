@@ -1,21 +1,23 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../css/mainscript.css">
     <link rel="stylesheet" href="../css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
-    <script src="../js/angular-1.8.2/angular-route.min.js"></script>
+    <script src="../js/angular-1.8.2/angular.min.js"></script>
     <script src="../js/popper.js"></script>
-    <script src="../node_modules/@popperjs/core/dist/cjs/popper.js"></script>
+    <script src="../js/angular-1.8.2/angular-route.min.js"></script>
+    <script src='https://rawgit.com/ghostbar/angular-file-model/master/angular-file-model.js'></script>
 </head>
+
 <body>
-    <div>
-        <div ng-app="myApp">
-            <div ng-controller="productController" class="mainx">
+    <div ng-app="myApp">
+        <div ng-controller="productController" class="mainx">
             <!--header-->
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid row" style="justify-content: space-between">
@@ -39,7 +41,9 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="navbar-toggler col-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler col-1" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
@@ -66,37 +70,38 @@
                         <div class="row my-4">
                             <div class="col-3">Product Name</div>
                             <div class="col-8">
-                                <input class="form-control" style="height: 50px;" placeholder="" ng-model="product.name"/>
+                                <input class="form-control" style="height: 50px;" placeholder=""
+                                    ng-model="product.name" />
                             </div>
                         </div>
                         <div class="row my-4">
                             <div class="col-3">Price</div>
                             <div class="col-8">
-                                <input class="form-control" style="height: 50px;" placeholder="" ng-model="product.price"/>
+                                <input class="form-control" style="height: 50px;" placeholder=""
+                                    ng-model="product.price" />
                             </div>
                         </div>
                         <div class="row my-4">
                             <div class="col-3">Category name</div>
                             <div class="col-8">
                                 <select class="form-select" ng-model="product.category" required>
-                                    <option
-                                        ng-repeat="cate in listCategory"
-                                        value="{{ cate.id }}">
+                                    <option ng-repeat="cate in listCategory" value="{{ cate.id }}">
                                         {{ cate.name }}
                                     </option>
                                 </select>
-                
+
                             </div>
                         </div>
                         <div class="row my-4">
-                            <div class="col-3">Price</div>
+                            <div class="col-3">Image</div>
                             <div class="col-8">
-                                <input type="file" />
+                                <input type="file" file-model="file" ng-change="handleFile()"/>
                             </div>
                         </div>
                         <div class="row my-4">
                             <div class="col-2 offset-10">
-                                <button class="p-2" style="background: transparent;color: rgb(34, 59, 8);" ng-click="submit($event)">add product</button>
+                                <button class="p-2" style="background: transparent;color: rgb(34, 59, 8);"
+                                    ng-click="submit($event)">add product</button>
                             </div>
                         </div>
                     </form>
@@ -119,19 +124,13 @@
                                 <td>{{ product.category }}</td>
                                 <td>{{ product.img }}</td>
                                 <td>
-                                    <button
-                                        class="btn btn-primary"
-                                        href="#"
-                                        ng-click="handleUpdate($event, product.id)"
-                                        >
+                                    <button class="btn btn-primary" href="#"
+                                        ng-click="handleUpdate($event, product.id)">
                                         Update
                                     </button>
                                 </td>
                                 <td>
-                                    <button
-                                        class="btn btn-danger"
-                                        ng-click="handleDelete($event, product.id)"
-                                        href="#">
+                                    <button class="btn btn-danger" ng-click="handleDelete($event, product.id)" href="#">
                                         Delete
                                     </button>
                                 </td>
@@ -141,39 +140,40 @@
                 </div>
             </div>
         </div>
-        <div>
-            
-        </div>
     </div>
 
 </body>
-<script src="../js/angular-1.8.2/angular.min.js"></script>
+
 <script>
-    const rt = angular.module("route",["ngRoute"])
-    const app = angular.module("myApp",[])
+    const rt = angular.module("route", ["ngRoute", "file-model"])
+    const app = angular.module("myApp", [])
 
     rt.config(($routeProvider) => {
         $routeProvider
             .when("/", {
-                templateUrl : "index.html"
+                templateUrl: "index.html"
             })
             .when("/detailproduct", {
-                templateUrl : "DetailProduct.html"
+                templateUrl: "DetailProduct.html"
             })
             .when("/event", {
-                templateUrl : "Event.html"
+                templateUrl: "Event.html"
             })
             .when("/product", {
-                templateUrl : "Product.html"
+                templateUrl: "Product.html"
             })
-            .when("/sign",{
+            .when("/sign", {
                 templateUrl: "SignInUp.html"
             })
-        ;
+            ;
     })
 
-    app.controller("productController",($scope, $http) => {
+    app.controller("productController", ($scope, $http) => {
         const productApi = 'http://localhost:3000/products'
+        const categoryApi = 'http://localhost:3000/categories'
+
+        $scope.file = null;
+        $scope.fileLink = "";
 
         $scope.updateIndex = -1;
         $scope.submit = (e) => {
@@ -183,49 +183,52 @@
         }
 
         $scope.insert = () => {
-            $http.post(productApi,$scope.product,JSON.stringify($scope.product))
+            $http.post(productApi, $scope.product, JSON.stringify($scope.product))
                 .then(res => {
                     console.dir(res);
                 })
             $http.get(productApi)
                 .then((res) => {
-                    $scope.listProducts = res.data; 
+                    $scope.listProducts = res.data;
                 })
             $scope.product = {
-                id : 0,
-                name : '',
-                price : 0,
-                category : 0,
-                img : ''
+                id: 0,
+                name: '',
+                price: 0,
+                category: 0,
+                img: ''
             }
         }
 
         $scope.update = () => {
-            $http.patch(productApi.concat(`/${$scope.updateIndex}`),$scope.product,JSON.stringify($scope.product))
+            $http.patch(productApi.concat(`/${$scope.updateIndex}`), $scope.product, JSON.stringify($scope.product))
                 .then(res => {
                     console.dir(res);
                 })
             $http.get(productApi)
                 .then((res) => {
-                    $scope.listProducts = res.data; 
+                    $scope.listProducts = res.data;
                 })
             $scope.updateIndex = -1;
         }
 
         $scope.product = {
-            id : 0,
-            name : '',
-            price : 0,
-            category : 0,
-            img : ''
+            id: 0,
+            name: '',
+            price: 0,
+            category: 0,
+            img: ''
         }
 
         $http.get(productApi)
             .then((res) => {
-                $scope.listProducts = res.data; 
+                $scope.listProducts = res.data;
+                $scope.listProducts.map(pro => {
+                    console.log(pro);
+                })
             })
-        
-        $http.get('http://localhost:3000/categories')
+
+        $http.get(categoryApi)
             .then((res) => {
                 $scope.listCategory = res.data;
             })
@@ -233,15 +236,27 @@
         $scope.handleUpdate = (e, id) => {
             $scope.updateIndex = id;
             $scope.listProducts.map((pro) => {
-                if(pro.id === id){
+                if (pro.id === id) {
                     // $scope.updateProduct = pro;
                     $scope.product = pro;
-                    return ;
+                    return;
                 }
             })
         }
 
-        $scope.handleDelete = (e,id) => {
+        $scope.$watch('file', (newVal) => {
+            // $scope.fileLink = URL.createObjectURL(newVal)
+            // console.log($scope.fileLink)
+            if (newVal) {
+                console.log(newVal);
+            }
+        })
+
+        $scope.handleFile = e => {
+            console.dir(e)
+        }
+
+        $scope.handleDelete = (e, id) => {
             e.preventDefault()
             $http.delete(productApi.concat(`/${id}`))
             $http.get(productApi)
@@ -249,7 +264,10 @@
                     $scope.listProducts = res.data;
                 })
         }
+
+
     })
 
 </script>
+
 </html>
