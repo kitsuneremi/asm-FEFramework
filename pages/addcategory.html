@@ -1,55 +1,54 @@
-<div class="row">
-    <p class="text-center">Add product</p>
-</div>
-<div class="row">
-    <div class="col-2" style="background-color: cadetblue;">
-        <div class="row mt-5">
-            <h3>admin</h3>
-        </div>
-        <div class="row mt-5">
-            <h3>product</h3>
-        </div>
-        <div class="row mt-5">
-            <h3>category</h3>
-        </div>
+<div ng-controller="addcategory">
+    <div class="row">
+        <p class="text-center">Add product</p>
     </div>
-    <div class="col-8 offset-1">
-        <form>
-            <div class="row my-4">
-                <div class="col-3">Category Name</div>
-                <div class="col-8">
-                    <input class="form-control" style="height: 50px;" placeholder="" ng-model="category.name"/>
-                </div>
+    <div class="row">
+        <div class="col-2" style="background-color: cadetblue;">
+            <div class="row mt-5">
+                <h3>admin</h3>
             </div>
-            <div class="row my-4">
-                <div class="col-2 offset-10">
-                    <button class="p-2" style="background: transparent;color: rgb(34, 59, 8);" ng-click="submit($event)">add category</button>
-                </div>
+            <div class="row mt-5">
+                <h3>product</h3>
             </div>
-        </form>
-        <table class="table mt-4">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="category in listCategories">
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>
-                    <button
-                            class="btn btn-primary"
-                            href="#"
-                            ng-click="handleUpdate($event, category.id)"
-                    >
-                        Update
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+            <div class="row mt-5">
+                <h3>category</h3>
+            </div>
+        </div>
+        <div class="col-8 offset-1">
+            <form>
+                <div class="row my-4">
+                    <div class="col-3">Category Name</div>
+                    <div class="col-8">
+                        <input class="form-control" style="height: 50px;" placeholder="" ng-model="category.name" />
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col-2 offset-10">
+                        <button class="p-2" style="background: transparent;color: rgb(34, 59, 8);"
+                            ng-click="submit($event)">add category</button>
+                    </div>
+                </div>
+            </form>
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="category in listCategories">
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.name }}</td>
+                        <td>
+                            <button class="btn btn-primary" href="#" ng-click="handleUpdate($event, category.id)">
+                                Update
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

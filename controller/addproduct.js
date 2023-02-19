@@ -6,6 +6,7 @@ function addproduct($scope, $http){
     $scope.fileLink = "";
 
     $scope.updateIndex = -1;
+
     $scope.submit = (e) => {
         e.preventDefault();
         // $scope.insert()
@@ -74,9 +75,7 @@ function addproduct($scope, $http){
         })
     }
 
-    $scope.$watch('file', (newVal) => {
-        // $scope.fileLink = URL.createObjectURL(newVal)
-        // console.log($scope.fileLink)
+    $scope.$watch('file', (newVal) => { 
         if (newVal) {
             console.log(newVal);
         }
@@ -94,6 +93,4 @@ function addproduct($scope, $http){
                 $scope.listProducts = res.data;
             })
     }
-
-
 }

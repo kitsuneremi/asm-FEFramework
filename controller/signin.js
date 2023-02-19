@@ -1,4 +1,5 @@
-function sign($scope, $http){
+
+export default function signin($scope, $http){
     const accountApi = 'http://localhost:3000/accounts'
 
     $http.get(accountApi)
@@ -9,7 +10,8 @@ function sign($scope, $http){
     $scope.account = "";
     $scope.password = "";
 
-    $scope.handleSignIn = e => {
+    $scope.handleSignIn = (e) => {
+        e.preventDefault();
         let count = 0;
         $scope.currentValue = {
             "username": $scope.account,
@@ -22,5 +24,4 @@ function sign($scope, $http){
         })
         count > 0 ? alert('ok') : alert('ko ok')
     }
-
 }

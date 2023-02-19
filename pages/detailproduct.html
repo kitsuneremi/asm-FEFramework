@@ -1,34 +1,47 @@
-<div class="row mt-3 mb-5">
-  <div class="col-2"><h4>Trang chủ</h4></div>
-  <div class="col-2"><h4>Sản phẩm</h4></div>
-  <div class="col-2"><h4>Giới thiệu cửa hàng</h4></div>
-  <div class="col-2"><h4>sự kiện</h4></div>
-</div>
-<div class="row">
-  <div class="col">
-    <div class="row">
-      <img ng-src={{listProducts[index-1].img}} class="d-block w-100" alt="...">
-      <ul class="pagination">
-        <li class="page-item" style="width: fit-content" ng-repeat="product in listProducts">
-          <img ng-src={{product.img}} alt="..." ng-click="handleChangeImg($event,product.id)" style="width: 30%;margin: 0">
-
-        </li>
-      </ul>
+<div ng-controller="detailproduct">
+  <div class="row mt-3 mb-5">
+    <div class="col-2">
+      <h4>Trang chủ</h4>
+    </div>
+    <div class="col-2">
+      <h4>Sản phẩm</h4>
+    </div>
+    <div class="col-2">
+      <h4>Giới thiệu cửa hàng</h4>
+    </div>
+    <div class="col-2">
+      <h4>sự kiện</h4>
     </div>
   </div>
-  <div class="col ms-5">
-    <div class="row"><h1>{{listProducts[index-1].name}}</h1></div>
-    <div class="row">
-      <p>chỗ này lười chưa cho thêm description vào api để lấy ra</p>
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <img ng-src={{listProducts[index-1].img}} class="d-block w-100" alt="...">
+        <ul class="pagination">
+          <li class="page-item" style="width: fit-content" ng-repeat="product in listProducts">
+            <img ng-src={{product.img}} alt="..." ng-click="handleChangeImg($event,product.id)"
+              style="width: 30%;margin: 0">
+
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="row" style="justify-content: center;">
-      <input type="number" ng-model="quantity" style="width: 5em;">
-    </div>
-    <div class="row" style="justify-content: center;">
-      <div class="col-4"><button ng-click="handleAdd($event)">thêm vào giỏ hàng</button></div>
+    <div class="col ms-5">
+      <div class="row">
+        <h1>{{listProducts[index-1].name}}</h1>
+      </div>
+      <div class="row">
+        <p>chỗ này lười chưa cho thêm description vào api để lấy ra</p>
+      </div>
+      <div class="row" style="justify-content: center;">
+        <input type="number" ng-model="quantity" style="width: 5em;">
+      </div>
+      <div class="row" style="justify-content: center;">
+        <div class="col-4"><button ng-click="handleAdd($event)">thêm vào giỏ hàng</button></div>
+      </div>
     </div>
   </div>
-</div>
-<div class="row mt-5" style="display: flex;justify-content: space-between">
+  <div class="row mt-5" style="display: flex;justify-content: space-between">
 
+  </div>
 </div>
