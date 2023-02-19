@@ -128,7 +128,7 @@
 
     <script>
         const rt = angular.module("routing", ["ngRoute", "file-model"])
-        
+
         rt.controller("AddCategory",addcategory)
         rt.controller("AddProduct", addproduct)
         rt.controller("Cart", cart)
@@ -142,7 +142,8 @@
                     templateUrl: "../pages/index.html"
                 })
                 .when("/detailproduct", {
-                    templateUrl: "../pages/detailproduct.html"
+                    templateUrl: "../pages/detailproduct.html",
+                    controller: "DetailProduct"
                 })
                 .when("/event", {
                     templateUrl: "../pages/event.html"
@@ -158,13 +159,16 @@
                     templateUrl: "../pages/storeintro.html"
                 })
                 .when("/cart", {
-                    templateUrl: "../pages/cart.html"
+                    templateUrl: "../pages/cart.html",
+                    controller: "Cart"
                 })
                 .when("/addproduct", {
-                    templateUrl: "../pages/addproduct.html"
+                    templateUrl: "../pages/addproduct.html",
+                    controller: "AddProduct"
                 })
                 .when("/addcategory", {
-                    templateUrl: "../pages/addcategory.html"
+                    templateUrl: "../pages/addcategory.html",
+                    controller: "AddCategory"
                 })
         })
     </script>
