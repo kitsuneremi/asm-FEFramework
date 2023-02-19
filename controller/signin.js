@@ -1,5 +1,4 @@
-
-export default function signin($scope, $http){
+function signin($scope, $http){
     const accountApi = 'http://localhost:3000/accounts'
 
     $http.get(accountApi)

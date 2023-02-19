@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myapp">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -8,14 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../css/mainscript.css">
-    <link rel="stylesheet" href="../css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
-    <script src="../js/angular-1.8.2/angular.js"></script>
-    <script src="../js/popper.js"></script>
-    <script src="../js/angular-1.8.2/angular-route.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/angular-route.js"></script>
     <script src='https://rawgit.com/ghostbar/angular-file-model/master/angular-file-model.js'></script>
+
 </head>
 
-<body>
+<body ng-app="routing">
     <div>
         <div class="mainx">
             <!--header-->
@@ -116,325 +118,56 @@
             </div>
         </div>
     </div>
-</body>
 
-<!-- <script src="../controller/addcategory.js"></script>
+
+<script src="../controller/addcategory.js"></script>
 <script src="../controller/addproduct.js"></script>
 <script src="../controller/cart.js"></script>
 <script src="../controller/detailproduct.js"></script>
-<script src="../controller/signin.js"></script> -->
+<script src="../controller/signin.js"></script>
 
-<script>
-    const app = angular.module("myapp",["ngRoute", "file-model"])
+    <script>
+        const rt = angular.module("routing", ["ngRoute", "file-model"])
+        
+        rt.controller("AddCategory",addcategory)
+        rt.controller("AddProduct", addproduct)
+        rt.controller("Cart", cart)
+        rt.controller("DetailProduct", detailproduct)
+        rt.controller("SignIn", signin)
 
-    app.controller = ('AddCategory', ($scope, $http) => {
-        const categoryApi = 'http://localhost:3000/categories'
-
-        $scope.updateIndex = -1;
-        $http.get(categoryApi)
-            .then((res) => {
-                $scope.listCategories = res.data;
-            })
-
-        $scope.category = {
-            id: 0,
-            name: ''
-        }
-
-        $scope.submit = (e) => {
-            e.preventDefault();
-            $scope.insert()
-            // $scope.update()
-        }
-
-        $scope.insert = () => {
-            $http.post(categoryApi, $scope.category, JSON.stringify($scope.category))
-                .then(res => {
-                    console.dir(res);
+        rt.config(function ($routeProvider, $locationProvider, $controllerProvider) {
+            $locationProvider.hashPrefix('');
+            $routeProvider
+                .when("/index", {
+                    templateUrl: "../pages/index.html"
                 })
-            $http.get(categoryApi)
-                .then((res) => {
-                    $scope.listCategories = res.data;
+                .when("/detailproduct", {
+                    templateUrl: "../pages/detailproduct.html"
                 })
-            $scope.category = {
-                id: 0,
-                name: ''
-            }
-
-            $scope.update = () => {
-                $http.patch(categoryApi.concat(`/${$scope.updateIndex}`), $scope.category, JSON.stringify($scope.category))
-                    .then(res => {
-                        console.dir(res);
-                    })
-                $http.get(categoryApi)
-                    .then((res) => {
-                        $scope.listCategories = res.data;
-                    })
-                $scope.updateIndex = -1;
-            }
-
-            $scope.category = {
-                id: 0,
-                name: '',
-            }
-
-            $scope.handleUpdate = (e, id) => {
-                console.log(id);
-                e.preventDefault();
-                $scope.updateIndex = id;
-                $scope.listCategories.map(cat => {
-                    if (cat.id === id) {
-                        $scope.category = cat;
-                        return;
-                    }
+                .when("/event", {
+                    templateUrl: "../pages/event.html"
                 })
-            }
-        }
-    })
-
-
-    app.controller = ('AddProduct', ($scope, $http) => {
-        const productApi = 'http://localhost:3000/products'
-        const categoryApi = 'http://localhost:3000/categories'
-
-        $scope.file = null;
-        $scope.fileLink = "";
-
-        $scope.updateIndex = -1;
-
-        $scope.submit = (e) => {
-            e.preventDefault();
-            // $scope.insert()
-            $scope.update()
-        }
-
-        $scope.insert = () => {
-            $http.post(productApi, $scope.product, JSON.stringify($scope.product))
-                .then(res => {
-                    console.dir(res);
+                .when("/product", {
+                    templateUrl: "../pages/product.html"
                 })
-            $http.get(productApi)
-                .then((res) => {
-                    $scope.listProducts = res.data;
+                .when("/sign", {
+                    templateUrl: "../pages/signin.html",
+                    controller: "SignIn"
                 })
-            $scope.product = {
-                id: 0,
-                name: '',
-                price: 0,
-                category: 0,
-                img: ''
-            }
-        }
-
-        $scope.update = () => {
-            $http.patch(productApi.concat(`/${$scope.updateIndex}`), $scope.product, JSON.stringify($scope.product))
-                .then(res => {
-                    console.dir(res);
+                .when("/storeinfo", {
+                    templateUrl: "../pages/storeintro.html"
                 })
-            $http.get(productApi)
-                .then((res) => {
-                    $scope.listProducts = res.data;
+                .when("/cart", {
+                    templateUrl: "../pages/cart.html"
                 })
-            $scope.updateIndex = -1;
-        }
-
-        $scope.product = {
-            id: 0,
-            name: '',
-            price: 0,
-            category: 0,
-            img: ''
-        }
-
-        $http.get(productApi)
-            .then((res) => {
-                $scope.listProducts = res.data;
-                $scope.listProducts.map(pro => {
-                    console.log(pro);
+                .when("/addproduct", {
+                    templateUrl: "../pages/addproduct.html"
                 })
-            })
-
-        $http.get(categoryApi)
-            .then((res) => {
-                $scope.listCategory = res.data;
-            })
-
-        $scope.handleUpdate = (e, id) => {
-            $scope.updateIndex = id;
-            $scope.listProducts.map((pro) => {
-                if (pro.id === id) {
-                    // $scope.updateProduct = pro;
-                    $scope.product = pro;
-                    return;
-                }
-            })
-        }
-
-        $scope.$watch('file', (newVal) => {
-            if (newVal) {
-                console.log(newVal);
-            }
+                .when("/addcategory", {
+                    templateUrl: "../pages/addcategory.html"
+                })
         })
+    </script>
+</body>
 
-        $scope.handleFile = e => {
-            console.dir(e)
-        }
-
-        $scope.handleDelete = (e, id) => {
-            e.preventDefault()
-            $http.delete(productApi.concat(`/${id}`))
-            $http.get(productApi)
-                .then((res) => {
-                    $scope.listProducts = res.data;
-                })
-        }
-    })
-
-
-    app.controller = ('Cart', ($scope, $http) => {
-        const productApi = 'http://localhost:3000/products'
-        const cartApi = 'http://localhost:3000/carts'
-        const categoryApi = 'http://localhost:3000/categories'
-
-        $scope.item = {
-            "id": 0,
-            "idpro": 1,
-            "quantity": 1
-        }
-
-        $scope.carts = []
-        $http.get(cartApi)
-            .then(res => {
-                $scope.carts = res.data;
-                $scope.carts.map(item => { console.log(item); })
-            })
-
-        $scope.category = {
-            "id": 0,
-            "name": ""
-        }
-
-        $scope.categories = []
-        $http.get(categoryApi)
-            .then(res => {
-                $scope.categories = res.data
-                $scope.categories.map(cat => { console.log(cat); })
-            })
-        $scope.product = {
-            id: 0,
-            name: '',
-            price: 0,
-            category: 0,
-            img: ''
-        }
-
-        $http.get(productApi)
-            .then((res) => {
-                $scope.listProducts = res.data;
-            })
-        $scope.handleDelete = (e, id) => {
-            e.preventDefault();
-            $http.delete(`${cartApi}/${id}`)
-            $http.get(categoryApi)
-                .then(res => {
-                    $scope.categories = res.data
-                    $scope.categories.map(cat => { console.log(cat); })
-                })
-        }
-
-    })
-
-
-    app.controller = ('DetailProduct', ($scope, $http) => {
-        const productApi = "http://localhost:3000/products"
-        const cartsApi = "http://localhost:3000/carts"
-        $scope.index = 1
-        $scope.src = [
-            { index: 1, src: "../img/kiana.png" },
-            { index: 2, src: "../img/DetailProduct1.png" },
-            { index: 3, src: "../img/ys.jpg" },
-        ]
-        $scope.quantity = 1;
-        $http.get(productApi)
-            .then(res => $scope.listProducts = res.data)
-
-
-        $scope.handleChangeImg = (e, index) => {
-            e.preventDefault();
-            $scope.index = index
-            console.log($scope.index)
-        }
-        $scope.handleAdd = (e) => {
-            $http.post(cartsApi, {
-                "idpro": $scope.index,
-                "quantity": $scope.quantity
-            })
-        }
-    })
-
-
-    app.controller = ('SignIn', ($scope, $http) => {
-        const accountApi = 'http://localhost:3000/accounts'
-
-        $http.get(accountApi)
-            .then(res => {
-                $scope.listAccounts = res.data;
-            })
-
-        $scope.account = "";
-        $scope.password = "";
-
-        $scope.handleSignIn = (e) => {
-            e.preventDefault();
-            let count = 0;
-            $scope.currentValue = {
-                "username": $scope.account,
-                "password": $scope.password
-            }
-            $scope.listAccounts.map(acc => {
-                if (acc.username == $scope.currentValue.username && acc.password == $scope.currentValue.password) {
-                    count++;
-                }
-            })
-            count > 0 ? alert('ok') : alert('ko ok')
-        }
-    })
-
-    app.config(($routeProvider, $locationProvider) => {
-        $locationProvider.hashPrefix('');
-        $routeProvider
-            .when("/index", {
-                templateUrl: "../pages/index.html"
-            })
-            .when("/detailproduct", {
-                templateUrl: "../pages/detailproduct.html",
-                controller: "detailproduct"
-            })
-            .when("/event", {
-                templateUrl: "../pages/event.html"
-            })
-            .when("/product", {
-                templateUrl: "../pages/product.html"
-            })
-            .when("/sign", {
-                templateUrl: "../pages/signin.html",
-                controller: 'SignIn'
-            })
-            .when("/storeinfo", {
-                templateUrl: "../pages/storeintro.html"
-            })
-            .when("/cart", {
-                templateUrl: "../pages/cart.html",
-                controller: "cart"
-            })
-            .when("/addproduct", {
-                templateUrl: "../pages/addproduct.html",
-                controller: "addproduct"
-            })
-            .when("/addcategory", {
-                templateUrl: "../pages/addcategory.html",
-                controller: "addcategory"
-            })
-    })
-</script>
 </html>
