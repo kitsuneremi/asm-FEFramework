@@ -1,4 +1,4 @@
-function addproduct($scope, $http){
+function AddProduct($scope, $http) {
     const productApi = 'http://localhost:3000/products'
     const categoryApi = 'http://localhost:3000/categories'
 
@@ -7,14 +7,38 @@ function addproduct($scope, $http){
 
     $scope.updateIndex = -1;
 
+    $scope.id = 0;
+    $scope.name = "";
+    $scope.price = 0;
+    $scope.category = 0;
+    $scope.img = "";
+
+    $scope.product = {
+        id: 0,
+        name: '',
+        price: 0,
+        category: 0,
+        img: ''
+    }
+
     $scope.submit = (e) => {
         e.preventDefault();
-        // $scope.insert()
-        $scope.update()
+        if ($scope.updateIndex == -1) {
+            $scope.insert()
+        } else {
+            $scope.update()
+        }
+
     }
 
     $scope.insert = () => {
-        $http.post(productApi, $scope.product, JSON.stringify($scope.product))
+        $scope.product.id = $scope.id
+        $scope.product.name = $scope.name
+        $scope.product.price = $scope.price
+        $scope.product.category = $scope.category
+        $scope.product.img = $scope.img
+
+        $http.post(productApi, $scope.product)
             .then(res => {
                 console.dir(res);
             })
@@ -29,26 +53,37 @@ function addproduct($scope, $http){
             category: 0,
             img: ''
         }
+        $http.get(productApi)
+            .then((res) => {
+                $scope.listProducts = res.data;
+            })
     }
 
     $scope.update = () => {
-        $http.patch(productApi.concat(`/${$scope.updateIndex}`), $scope.product, JSON.stringify($scope.product))
-            .then(res => {
-                console.dir(res);
-            })
+        $scope.product.id = $scope.id
+        $scope.product.name = $scope.name
+        $scope.product.price = $scope.price
+        $scope.product.category = $scope.category
+        $scope.product.img = $scope.img
+        console.log($scope.name);
+
+        $http.put(`${productApi}/${$scope.updateIndex}`, $scope.product)
         $http.get(productApi)
             .then((res) => {
                 $scope.listProducts = res.data;
             })
         $scope.updateIndex = -1;
-    }
-
-    $scope.product = {
-        id: 0,
-        name: '',
-        price: 0,
-        category: 0,
-        img: ''
+        $scope.product = {
+            id: 0,
+            name: '',
+            price: 0,
+            category: 0,
+            img: ''
+        }
+        $http.get(productApi)
+            .then((res) => {
+                $scope.listProducts = res.data;
+            })
     }
 
     $http.get(productApi)
@@ -65,19 +100,24 @@ function addproduct($scope, $http){
         })
 
     $scope.handleUpdate = (e, id) => {
+        e.preventDefault();
         $scope.updateIndex = id;
         $scope.listProducts.map((pro) => {
             if (pro.id === id) {
-                // $scope.updateProduct = pro;
-                $scope.product = pro;
-                return;
+                $scope.id = pro.id
+                $scope.name = pro.name
+                $scope.price = pro.price
+                $scope.category = pro.category
+                $scope.img = pro.img
             }
         })
     }
 
-    $scope.$watch('file', (newVal) => { 
+
+
+    $scope.$watch('file', (newVal) => {
         if (newVal) {
-            console.log(newVal);
+            $scope.img = `../img/${newVal.name}`
         }
     })
 
