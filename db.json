@@ -1,0 +1,91 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Ao"
+    },
+    {
+      "id": 2,
+      "name": "Quan"
+    },
+    {
+      "id": 3,
+      "name": "x"
+    },
+    {
+      "id": 4,
+      "name": "test"
+    }
+  ],
+  "products": [
+    {
+      "name": "Ao 1",
+      "price": 100002112,
+      "category": "2",
+      "id": 1,
+      "img": " ../img/Herrscher_of_Finality.webp"
+    },
+    {
+      "name": "aaaa",
+      "category": "2",
+      "price": "100001111",
+      "id": 2,
+      "img": " ../img/Herrscher_of_Truth.webp"
+    },
+    {
+      "name": "asdasd",
+      "category": "1",
+      "price": 10000,
+      "img": " ../img/Herrscher_of_Origin.webp",
+      "id": 3
+    },
+    {
+      "name": "kitsunelilyabsadsadasdasd",
+      "price": 10000,
+      "category": "2",
+      "img": " ../img/Herrscher_of_Human_-_Ego.webp",
+      "id": 4
+    },
+    {
+      "name": "ádasdasda",
+      "img": " ../img/Starry_Impression.webp",
+      "category": "2",
+      "price": 10000,
+      "id": 5
+    }
+  ],
+  "carts": [
+    {
+      "id": 0,
+      "idpro": 0,
+      "quantity": 1
+    },
+    {
+      "idpro": 2,
+      "quantity": 5,
+      "id": 1
+    },
+    {
+      "idpro": 1,
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "idpro": 1,
+      "quantity": 1,
+      "id": 3
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "username": "",
+      "password": ""
+    },
+    {
+      "username": "test",
+      "password": "test",
+      "id": 2
+    }
+  ]
+}
