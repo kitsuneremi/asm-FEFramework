@@ -5,6 +5,14 @@ function Home($scope, $http, $window) {
         .then(res => {
             $scope.listproducts = res.data
         })
-    $scope.thisAccount = $window.location.href.split("?")[1].split("=")[1]
-
+        try {
+            $scope.thisAccount = $window.location.href.split("?")[1].split("=")[1].split("&")[0]
+            $scope.$parent.user = $scope.thisAccount
+        } catch (error) {
+            $scope.thisAccount = "undefine"
+        }
+    
+    $scope.handleClick = (e,id) => {
+        $window.location.href = `#detailproduct?productid=${id}`
+    }
 }

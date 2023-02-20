@@ -5,7 +5,7 @@ function signin($scope, $http, $window){
         .then(res => {
             $scope.listAccounts = res.data;
         })
-
+    $scope.id = 0;
     $scope.account = "";
     $scope.password = "";
 
@@ -19,8 +19,9 @@ function signin($scope, $http, $window){
         $scope.listAccounts.map(acc => {
             if(acc.username == $scope.currentValue.username && acc.password == $scope.currentValue.password){
                 count++;
+                $scope.id = acc.id;
             }
         })
-        count > 0 ? $window.location.href = `#?username=${$scope.account}` : alert('ko ok')
+        count > 0 ? $window.location.href = `#?username=${$scope.account}&id=${$scope.id}` : alert('ko ok')
     }
 }

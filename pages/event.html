@@ -10,11 +10,15 @@
       <div class="col-4"></div>
       <div class="collapse navbar-collapse col-3 navbar-end" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 row">
-          <li class="nav-item col-4">
-            <a href="#sign" class="header-link">đăng nhập</a>
+          <li class="nav-item col-4" ng-switch="user">
+            <a href="#sign" class="header-link" ngSwitchCase="undefine" ng-hide="user">đăng nhập</a>
+            <div>
+              <a class="header-link">xin chào:</a>
+              <a href="#sign" class="header-link" ngSwitchDefault ng-bind="user"></a>
+            </div>
           </li>
           <li class="nav-item col-4">
-            <a class="header-link" href="#">trang của tôi</a>
+            <a class="header-link" href="#sold">trang của tôi</a>
           </li>
           <li class="nav-item col-4">
             <a href="#cart" class="header-link">giỏ hàng</a>

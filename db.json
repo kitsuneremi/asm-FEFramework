@@ -87,5 +87,14 @@
       "password": "test",
       "id": 2
     }
+  ],
+  "sold": [
+    {
+      "id": 1,
+      "idpro": 1,
+      "idacc": 1,
+      "quantity": 5,
+      "total": 10000
+    }
   ]
 }

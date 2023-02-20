@@ -24,22 +24,37 @@
         </div>
     </div>
 
-<script src="../controller/home.js"></script>
-<script src="../controller/addcategory.js"></script>
-<script src="../controller/addproduct.js"></script>
-<script src="../controller/cart.js"></script>
-<script src="../controller/detailproduct.js"></script>
-<script src="../controller/signin.js"></script>
+    <script src="../controller/home.js"></script>
+    <script src="../controller/addcategory.js"></script>
+    <script src="../controller/addproduct.js"></script>
+    <script src="../controller/cart.js"></script>
+    <script src="../controller/detailproduct.js"></script>
+    <script src="../controller/signin.js"></script>
+    <script src="../controller/allproducts.js"></script>
+    <script src="../controller/sold.js"></script>
 
 
     <script>
         const rt = angular.module("routing", ["ngRoute", "file-model"])
-        rt.controller("Home",Home)
-        rt.controller("AddCategory",addcategory)
+        rt.controller("x", ($scope) => {
+            $scope.user = ""
+            try {
+                $scope.user = $window.location.href.split("?")[1].split("=")[1]
+                $scope.idacc = 0
+            } catch (error) {
+                $scope.user = "undefine"
+            }
+            console.log($scope.user);
+        })
+        rt.controller("AllProducts", allproducts)
+        rt.controller("Home", Home)
+        rt.controller("AddCategory", addcategory)
         rt.controller("AddProduct", AddProduct)
         rt.controller("Cart", cart)
         rt.controller("DetailProduct", detailproduct)
         rt.controller("SignIn", signin)
+        rt.controller("Sold", sold)
+
 
         rt.config(function ($routeProvider, $locationProvider) {
             $locationProvider.hashPrefix('');
@@ -56,7 +71,8 @@
                     templateUrl: "../pages/event.html"
                 })
                 .when("/product", {
-                    templateUrl: "../pages/product.html"
+                    templateUrl: "../pages/product.html",
+                    controller: "AllProducts"
                 })
                 .when("/sign", {
                     templateUrl: "../pages/signin.html",
@@ -76,6 +92,10 @@
                 .when("/addcategory", {
                     templateUrl: "../pages/addcategory.html",
                     controller: "AddCategory"
+                })
+                .when("/sold", {
+                    templateUrl: "../pages/sold.html",
+                    controller: "Sold"
                 })
         })
     </script>

@@ -1,74 +1,121 @@
-<div class="row">
-  <div class="col-3">
-    <div class="mb-5 mt-5">dưỡng da</div>
-    <div class="mb-5">mặt nạ</div>
-    <div class="mb-5">chăm sóc cơ thể</div>
-    <div class="mb-5">trang điểm</div>
-  </div>
-  <div class="col-9">
-    <div><h3 class="text-center mt-4">tất cả sản phẩm</h3></div>
-    <div class="row mt-5" style="display: flex;justify-content: space-between">
-      <div class="card py-1 px-5" style="width: 24rem;border: 0">
-        <img
-                src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                class="card-img-top" alt="..."
-        />
-        <div class="card-body text-center">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div class="card py-1 px-5" style="width: 24rem;border: 0">
-        <img
-                src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                class="card-img-top" alt="..."
-        />
-        <div class="card-body text-center">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div class="card py-1 px-5" style="width: 24rem;border: 0">
-        <img
-                src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                class="card-img-top" alt="..."
-        />
-        <div class="card-body text-center">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div class="card py-1 px-5" style="width: 24rem;border: 0">
-        <img
-                src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                class="card-img-top" alt="..."
-        />
-        <div class="card-body text-center">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div class="card py-1 px-5" style="width: 24rem;border: 0">
-        <img
-                src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                class="card-img-top" alt="..."
-        />
-        <div class="card-body text-center">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div class="card py-1 px-5" style="width: 24rem;border: 0">
-        <img
-                src="https://upload-os-bbs.hoyolab.com/upload/2022/09/10/149514961/ffe294e46c8f5d05cb90e40cdae34889_1303922985347341305.png?x-oss-process=image/resize,s_1000/quality,q_80/auto-orient,0/interlace,1/format,png"
-                class="card-img-top" alt="..."
-        />
-        <div class="card-body text-center">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
+<div>
+  <!--header-->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid row" style="justify-content: space-between">
+      <h1 class="col-2" href="#">Innisfree</h1>
+      <form class="d-flex col-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
 
+      <div class="col-4"></div>
+      <div class="collapse navbar-collapse col-3 navbar-end" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 row">
+          <li class="nav-item col-4" ng-switch="user">
+            <a href="#sign" class="header-link" ngSwitchCase="undefine" ng-hide="user">đăng nhập</a>
+            <div>
+              <a class="header-link">xin chào:</a>
+              <a href="#sign" class="header-link" ngSwitchDefault ng-bind="user"></a>
+            </div>
+          </li>
+          <li class="nav-item col-4">
+            <a class="header-link" href="#sold">trang của tôi</a>
+          </li>
+          <li class="nav-item col-4">
+            <a href="#cart" class="header-link">giỏ hàng</a>
+          </li>
+        </ul>
+      </div>
+      <button class="navbar-toggler col-1" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+  <div class="row mt-3 mb-5">
+    <div class="col-2"><a href="#" class="header-link">Trang chủ</a></div>
+    <div class="col-2"><a href="#product" class="header-link">sp</a></div>
+    <div class="col-2"><a href="#storeinfo" class="header-link">Giới thiệu cửa hàng</a></div>
+    <div class="col-2"><a href="#event" class="header-link">sự kiện</a></div>
+  </div>
+  <!-- content -->
+  <div class="row">
+    <div class="col-2">
+      <div class="mb-5 mt-5">dưỡng da</div>
+      <div class="mb-5">mặt nạ</div>
+      <div class="mb-5">chăm sóc cơ thể</div>
+      <div class="mb-5">trang điểm</div>
+    </div>
+    <div class="col-10">
+      <div>
+        <h3 class="text-center mt-4">tất cả sản phẩm</h3>
+      </div>
+      <div class="row mt-5" style="display: flex;justify-content: space-between">
+        <a class="card py-1 px-5" style="width: 24rem;border: 0;text-decoration: none; color: black;"
+          ng-repeat="pro in listproducts" ng-click="handleClick($event,pro.id)">
+          <img ng-src={{pro.img}} alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{pro.name}}</h5>
+            <p class="card-text">{{pro.description}}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- footer -->
+  <div class="footerx">
+    <div class="the-real-footer">
+      <div class="row footer-first-row">
+        <div class="col-8" style="text-align: start">
+          <div class="row">
+            <h1 style="color: white">innisfree</h1>
+          </div>
+          <div class="row mt-5">
+            <div class="col-1">
+              <button class="footer-button">a</button>
+            </div>
+            <div class="col-1">
+              <button class="footer-button">a</button>
+            </div>
+            <div class="col-1">
+              <button class="footer-button">a</button>
+            </div>
+            <div class="col-1">
+              <button class="footer-button">a</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-4" style="text-align: end;padding: 4% 0">
+          <div class="row">
+            <div class="col-2"><button class="footer-button">a</button></div>
+            <div class="col-10">
+              <div class="row footer-button-text">2020 innisfree Inc.</div>
+              <div class="row footer-button-text">All rights reserved.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row">
+          <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách giao
+              hàng
+              và thanh toán</a></div>
+          <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách bảo
+              mật
+              thông tin khách hàng</a></div>
+          <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách mua
+              hàng</a></div>
+          <div class="col-2" style="width: fit-content"><a class="footer-button-text">Chính sách trả
+              hàng</a></div>
+        </div>
+        <div class="row">
+          <p class="footer-button-text">thời gian làm việc: Thứ 2 đến thứ 7 hàng tuần</p>
+          <p class="footer-button-text">Tự vấn và chăm sóc khách hàng: 129310923890182390 (Ext 125)
+          </p>
+          <p class="footer-button-text">Email: cs_vn@tinhte.innisfree.com</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
