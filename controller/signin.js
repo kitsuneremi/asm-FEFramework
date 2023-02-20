@@ -1,4 +1,4 @@
-function signin($scope, $http){
+function signin($scope, $http, $window){
     const accountApi = 'http://localhost:3000/accounts'
 
     $http.get(accountApi)
@@ -21,6 +21,6 @@ function signin($scope, $http){
                 count++;
             }
         })
-        count > 0 ? alert('ok') : alert('ko ok')
+        count > 0 ? $window.location.href = `#?username=${$scope.account}` : alert('ko ok')
     }
 }

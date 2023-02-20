@@ -25,7 +25,6 @@ function cart($scope, $http) {
     $http.get(categoryApi)
         .then(res => {
             $scope.categories = res.data
-            $scope.categories.map(cat => { console.log(cat); })
         })
     $scope.product = {
         id: 0,
@@ -41,12 +40,14 @@ function cart($scope, $http) {
         })
     $scope.handleDelete = (e, id) => {
         e.preventDefault();
-        $http.delete(`${cartApi}/${id}`)
-        $http.get(categoryApi)
-            .then(res => {
-                $scope.categories = res.data
-                $scope.categories.map(cat => { console.log(cat); })
-            })
+        $http.delete(`${cartApi}/${id}`).then(
+            $http.get(cartApi)
+                .then(res => {
+                    $scope.carts = res.data;
+                    $scope.carts.map(item => { console.log(item); })
+                })
+        )
+
     }
 
 }

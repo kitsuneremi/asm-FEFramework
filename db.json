@@ -2,56 +2,61 @@
   "categories": [
     {
       "id": 1,
-      "name": "Ao"
+      "name": "a"
     },
     {
       "id": 2,
-      "name": "Quan"
+      "name": "b"
     },
     {
       "id": 3,
-      "name": "x"
+      "name": "c"
     },
     {
       "id": 4,
-      "name": "test"
+      "name": "e"
     }
   ],
   "products": [
     {
-      "name": "Ao 1",
-      "price": 100002112,
-      "category": "2",
       "id": 1,
-      "img": " ../img/Herrscher_of_Finality.webp"
-    },
-    {
-      "name": "aaaa",
-      "category": "2",
-      "price": "100001111",
-      "id": 2,
-      "img": " ../img/Herrscher_of_Truth.webp"
-    },
-    {
-      "name": "asdasd",
+      "name": "Herrscher_of_Origin",
+      "price": "1000",
       "category": "1",
-      "price": 10000,
-      "img": " ../img/Herrscher_of_Origin.webp",
-      "id": 3
+      "img": "../img/Herrscher_of_Origin.webp",
+      "description": "Herrscher of Origin là nhân vật cấp S mới của Raiden Mei, sở hữu thuộc tính Số Ảo và ST Nguyên Tố Lôi, bên cạnh cô có [Cánh Lưỡi Đao] có thể dùng để tấn công địch. Sau khi dùng skill Tất Sát, Herrscher of Origin sẽ vung Tachi trong tay, tung Trảm Kích Liên Tục về phía địch, khi đao quang của cô lướt qua, hiện thực cũng vỡ vụn."
     },
     {
-      "name": "kitsunelilyabsadsadasdasd",
-      "price": 10000,
+      "id": 2,
+      "name": "Starry_Impression",
+      "price": "2000",
       "category": "2",
-      "img": " ../img/Herrscher_of_Human_-_Ego.webp",
-      "id": 4
+      "img": "../img/Starry_Impression.webp",
+      "description": "Starry Impression là nhân vật SP cận chiến ST vật lý thuộc tính Dị Năng, mang theo vũ khí Thánh Giá. Thông qua chiêu thức vảy màu vẽ, cùng đồng đội Mr. Knight kề vai tác chiến, khiến địch rơi vào trạng thái Tụt Máu và tạo hiệu quả buff cho toàn đội."
     },
     {
-      "name": "ádasdasda",
-      "img": " ../img/Starry_Impression.webp",
-      "category": "2",
+      "id": 3,
+      "name": "Herrscher_of_Truth",
+      "price": "3000",
+      "category": "3",
+      "img": "../img/Herrscher_of_Truth.webp",
+      "description": "[Herrscher of Truth] là nhân vật cấp S, ST nguyên tố Băng thuộc tính Số Ảo, trong chiến đấu có thể cung cấp hiệu quả hỗ trợ nguyên tố. Trên chiến trường cô có thể thay đổi hai hình thái chiến đấu gây cho địch ST nguyên tố Băng!"
+    },
+    {
+      "id": 4,
+      "name": "Herrscher_of_Human_-_Ego",
+      "price": "4000",
+      "category": "4",
+      "img": "../img/Herrscher_of_Human_-_Ego.webp",
+      "description": "Nhân vật Herrscher S mới [Herrscher of Human: Ego] là nhân vật tầm xa mang ST nguyên tố Băng thuộc tính Dị Năng, sau khi tung skill Tất Sát có thể từ hình thái [Herrscher of Human] chuyển sang [Herrscher of Origin], [Herrscher of Human: Ego] sử dụng cung tên TC địch, trong hình thái [Herrscher of Origin] cô sẽ đổi sang dùng quyền trượng để chiến đấu."
+    },
+    {
+      "id": 5,
+      "name": "Herrscher_of_Finality",
       "price": 10000,
-      "id": 5
+      "category": 3,
+      "img": "../img/Herrscher_of_Finality.webp",
+      "description": "[Herrscher of Finality] là nhân vật Herrscher cấp S của Kiana Kaslana, là nhân vật mới mang thuộc tính Số Ảo và ST Nguyên Tố Lửa, khi chiến đấu cô sẽ dùng Súng Đôi và kiếm tấn công địch, và có thể chiến đấu trên không. [Herrscher of Finality] có thể kích hoạt [Vết Nứt Thời Gian Tuyệt Đối] và tạo ra một khu vực đứng yên hoàn toàn."
     }
   ],
   "carts": [
@@ -66,14 +71,9 @@
       "id": 1
     },
     {
-      "idpro": 1,
-      "quantity": 1,
+      "idpro": 3,
+      "quantity": 3,
       "id": 2
-    },
-    {
-      "idpro": 1,
-      "quantity": 1,
-      "id": 3
     }
   ],
   "accounts": [

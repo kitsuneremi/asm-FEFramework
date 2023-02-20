@@ -13,8 +13,9 @@ function detailproduct($scope, $http){
         console.log($scope.index)
     }
     $scope.handleAdd = (e) => {
+        e.preventDefault();
         $http.post(cartsApi,{
-            "idpro": $scope.index,
+            "idpro": $scope.index - 1,
             "quantity" : $scope.quantity
         })
     }
