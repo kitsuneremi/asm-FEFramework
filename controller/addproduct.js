@@ -12,13 +12,15 @@ function AddProduct($scope, $http) {
     $scope.price = 0;
     $scope.category = 0;
     $scope.img = "";
+    $scope.description = "";
 
     $scope.product = {
         id: 0,
         name: '',
         price: 0,
         category: 0,
-        img: ''
+        img: '',
+        description: ""
     }
 
     $scope.submit = (e) => {
@@ -37,6 +39,7 @@ function AddProduct($scope, $http) {
         $scope.product.price = $scope.price
         $scope.product.category = $scope.category
         $scope.product.img = $scope.img
+        $scope.product.description = $scope.description
 
         $http.post(productApi, $scope.product)
             .then(res => {
@@ -65,6 +68,7 @@ function AddProduct($scope, $http) {
         $scope.product.price = $scope.price
         $scope.product.category = $scope.category
         $scope.product.img = $scope.img
+        $scope.product.description = $scope.description
         console.log($scope.name);
 
         $http.put(`${productApi}/${$scope.updateIndex}`, $scope.product)
@@ -109,6 +113,7 @@ function AddProduct($scope, $http) {
                 $scope.price = pro.price
                 $scope.category = pro.category
                 $scope.img = pro.img
+                $scope.description = pro.description
             }
         })
     }

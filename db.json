@@ -15,6 +15,10 @@
     {
       "id": 4,
       "name": "e"
+    },
+    {
+      "id": 5,
+      "name": "f"
     }
   ],
   "products": [
@@ -57,6 +61,13 @@
       "category": 3,
       "img": "../img/Herrscher_of_Finality.webp",
       "description": "[Herrscher of Finality] là nhân vật Herrscher cấp S của Kiana Kaslana, là nhân vật mới mang thuộc tính Số Ảo và ST Nguyên Tố Lửa, khi chiến đấu cô sẽ dùng Súng Đôi và kiếm tấn công địch, và có thể chiến đấu trên không. [Herrscher of Finality] có thể kích hoạt [Vết Nứt Thời Gian Tuyệt Đối] và tạo ra một khu vực đứng yên hoàn toàn."
+    },
+    {
+      "id": 6,
+      "name": "Herrscher_of_Dudu",
+      "price": "20000",
+      "category": "5",
+      "img": "../img/Palatinus_Equinox.webp"
     }
   ],
   "carts": [
@@ -74,13 +85,18 @@
       "idpro": 3,
       "quantity": 3,
       "id": 2
+    },
+    {
+      "idpro": 1,
+      "quantity": 3,
+      "id": 3
     }
   ],
   "accounts": [
     {
       "id": 1,
-      "username": "",
-      "password": ""
+      "username": "lily",
+      "password": "ehe"
     },
     {
       "username": "test",

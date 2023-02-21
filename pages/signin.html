@@ -8,15 +8,23 @@
   <div class="row">
     <div class="col-lg-6 col-sm-12">
       <div class="col-6 offset-3">
-        <form>
+        <form name="form_sign">
           <div class="row my-5">
             <h2>đăng nhập thành viên</h2>
           </div>
           <div class="row my-5">
-            <input class="form-control border-0" placeholder="tài khoản" ng-model="account">
+            <input id="x" class="form-control border-0" placeholder="tài khoản" name="username" ng-model="account"
+              required>
+            <span class="text-danger" ng-show="form_sign.username.$error.required && form_sign.username.$touched">
+              Không được để trống
+            </span>
           </div>
           <div class="row my-5">
-            <input type="password" placeholder="mật khẩu" class="form-control border-0" ng-model="password">
+            <input id="x" type="password" placeholder="mật khẩu" name="password" class="form-control border-0"
+              ng-model="password" required>
+            <span class="text-danger" ng-show="form_sign.password.$error.required && form_sign.password.$touched">
+              Không được để trống
+            </span>
           </div>
           <div class="row my-5">
             <p data-bs-toggle="modal" data-bs-target="#exampleModal">bạn quên mật khẩu?</p>
@@ -79,10 +87,12 @@
           </div>
           <div class="row my-5">
             <div class="col-4 offset-1">
-              <button class="px-3" style="background: transparent">facebook</button>
+              <button class="px-4 py-2 bg-primary"
+                style="background: transparent;border-radius: 1.3em; border: 0; color: aliceblue;">facebook</button>
             </div>
             <div class="col-4 offset-1">
-              <button class="px-3" style="background: transparent">google</button>
+              <button class="px-4 py-2 bg-danger"
+                style="background: transparent;border-radius: 1.3em; border: 0;color: aliceblue;">google</button>
             </div>
 
           </div>

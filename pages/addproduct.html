@@ -1,87 +1,144 @@
 <div>
-  <div class="row">
-    <p class="text-center">Add product</p>
-  </div>
-  <div class="row">
-    <div class="col-2" style="background-color: cadetblue;">
-      <div class="row mt-5">
-        <h3>admin</h3>
-      </div>
-      <div class="row mt-5">
-        <a href="#addproduct" style="text-decoration: none; color: black;font-size: 2em;">product</a>
-      </div>
-      <div class="row mt-5">
-        <a href="#addcategory" style="text-decoration: none; color: black;font-size: 2em;">category</a>
-      </div>
-    </div>
-    <div class="col-8 offset-1">
-      <form>
-        <div class="row my-4">
-          <div class="col-3">Product Name</div>
-          <div class="col-8">
-            <input class="form-control" style="height: 50px;" placeholder="" ng-model="name" />
-          </div>
-        </div>
-        <div class="row my-4">
-          <div class="col-3">Price</div>
-          <div class="col-8">
-            <input class="form-control" style="height: 50px;" placeholder="" ng-model="price" />
-          </div>
-        </div>
-        <div class="row my-4">
-          <div class="col-3">Category name</div>
-          <div class="col-8">
-            <select class="form-select" ng-model="category" required>
-              <option ng-repeat="cate in listCategory" value="{{ cate.id }}">
-                {{ cate.name }}
-              </option>
-            </select>
-
-          </div>
-        </div>
-        <div class="row my-4">
-          <div class="col-3">Image</div>
-          <div class="col-8">
-            <input type="file" file-model="file" />
-          </div>
-        </div>
-        <div class="row my-4">
-          <div class="col-2 offset-10">
-            <button class="p-2" style="background: transparent;color: rgb(34, 59, 8);" ng-click="submit($event)">addproduct</button>
-          </div>
-        </div>
+  <!--header-->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid row" style="justify-content: space-between">
+      <h1 class="col-2" href="#">Innisfree</h1>
+      <form class="d-flex col-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <table class="table mt-4">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>price</th>
-            <th>category</th>
-            <th>img</th>
-            <th colspan="2">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="product in listProducts">
-            <td>{{ product.id }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.category }}</td>
-            <td>{{ product.img }}</td>
-            <td>
-              <button class="btn btn-primary" href="#" ng-click="handleUpdate($event, product.id)">
-                Update
-              </button>
-            </td>
-            <td>
-              <button class="btn btn-danger" ng-click="handleDelete($event, product.id)" href="#">
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
+      <div class="col-4"></div>
+      <div class="collapse navbar-collapse col-3 navbar-end" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 row">
+          <li class="nav-item col-4" ng-switch="user">
+            <a href="#sign" class="header-link" ngSwitchCase="undefine" ng-hide="user">đăng nhập</a>
+            <div>
+              <a class="header-link">xin chào:</a>
+              <a href="#sign" class="header-link" ngSwitchDefault ng-bind="user"></a>
+            </div>
+          </li>
+          <li class="nav-item col-4">
+            <a class="header-link" href="#sold">trang của tôi</a>
+          </li>
+          <li class="nav-item col-4">
+            <a href="#cart" class="header-link">giỏ hàng</a>
+          </li>
+        </ul>
+      </div>
+      <button class="navbar-toggler col-1" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+  <div class="row mt-3 mb-5">
+    <div class="col-2"><a href="#" class="header-link">Trang chủ</a></div>
+    <div class="col-2"><a href="#product" class="header-link">sp</a></div>
+    <div class="col-2"><a href="#storeinfo" class="header-link">Giới thiệu cửa hàng</a></div>
+    <div class="col-2"><a href="#event" class="header-link">sự kiện</a></div>
+  </div>
+  <div>
+    <div class="row">
+      <p class="text-center">Add product</p>
+    </div>
+    <div class="row">
+      <div class="col-2" style="background-color: cadetblue;">
+        <div class="row mt-5">
+          <h3>{{user}}</h3>
+        </div>
+        <div class="row mt-5">
+          <a href="#addproduct" style="text-decoration: none; color: black;font-size: 2em;">product</a>
+        </div>
+        <div class="row mt-5">
+          <a href="#addcategory" style="text-decoration: none; color: black;font-size: 2em;">category</a>
+        </div>
+      </div>
+      <div class="col-8 offset-1">
+        <form name="form_addproduct" action="" method="">
+          <div class="row my-4">
+            <div class="col-3">Product Name</div>
+            <div class="col-8">
+              <input class="form-control" style="height: 50px;" placeholder="" ng-model="name" name="name" required />
+              <span class="text-danger" ng-show="form_addproduct.name.$error.required && form_addproduct.name.$touched">
+                Không được để trống
+              </span>
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-3">Price</div>
+            <div class="col-8">
+              <input class="form-control" style="height: 50px;" placeholder="" name="price" ng-model="price" required />
+              <span class="text-danger"
+                ng-show="form_addproduct.price.$error.required && form_addproduct.price.$touched">
+                Không được để trống
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">Description</div>
+            <div class="col-8">
+              <input class="form-control" style="height: 50px;" placeholder="" name="description"
+                ng-model="description" />
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-3">Category name</div>
+            <div class="col-8">
+              <select class="form-select" ng-model="category" required>
+                <option ng-repeat="cate in listCategory" value="{{ cate.id }}">
+                  {{ cate.name }}
+                </option>
+              </select>
+
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-3">Image</div>
+            <div class="col-8">
+              <input type="file" file-model="file" />
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-2 offset-10">
+              <button class="p-2" style="background: transparent;color: rgb(34, 59, 8);"
+                ng-click="submit($event)">addproduct</button>
+            </div>
+          </div>
+        </form>
+        <table class="table mt-4">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Name</th>
+              <th>price</th>
+              <th>category</th>
+              <th>img</th>
+              <th colspan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="product in listProducts">
+              <td>{{ product.id }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.price }}</td>
+              <td>{{ product.category }}</td>
+              <td>{{ product.img }}</td>
+              <td>
+                <button class="btn btn-primary" href="#" ng-click="handleUpdate($event, product.id)">
+                  Update
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-danger" ng-click="handleDelete($event, product.id)" href="#">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

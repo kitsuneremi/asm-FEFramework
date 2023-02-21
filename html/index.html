@@ -38,13 +38,13 @@
         const rt = angular.module("routing", ["ngRoute", "file-model"])
         rt.controller("x", ($scope) => {
             $scope.user = ""
-            try {
-                $scope.user = $window.location.href.split("?")[1].split("=")[1]
-                $scope.idacc = 0
-            } catch (error) {
-                $scope.user = "undefine"
-            }
-            console.log($scope.user);
+            // try {
+            //     $scope.user = $window.location.href.split("?")[1].split("=")[1]
+            //     $scope.idacc = 0
+            // } catch (error) {
+            //     $scope.user = "undefine"
+            // }
+            // console.log($scope.user);
         })
         rt.controller("AllProducts", allproducts)
         rt.controller("Home", Home)
